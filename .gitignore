@@ -33,3 +33,6 @@ htmlcov/
 
 # mypy
 .mypy_cache/
+
+# sqlite3
+*.sqlite3
