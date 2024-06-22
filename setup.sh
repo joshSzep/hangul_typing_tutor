@@ -1,31 +1,23 @@
 #!/bin/bash
 
+bold=$(tput bold)
+normal=$(tput sgr0)
+
 # Step 1: Run install_poetry.py with python3
 python3 install_poetry.py
 
-# Step 2: Run poetry install
+# Step 2: Run poetry install to create the virtual environment and install dependencies
 poetry install
 
-# Step 3: Install pre-commit hooks
+# Step 3: Install pre-commit hooks for git in this repository
 poetry run pre-commit install
 
 # Step 4: Determine the OS and print the correct virtual environment activation instructions
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OSTYPE" == "win32" ]]; then
-    # Windows
-    venv_path=$(poetry env info --path)
-
-    # Check for PowerShell and cmd
-    if [ -f "$venv_path/Scripts/Activate.ps1" ]; then
-        # PowerShell
-        echo "Please run the following command in PowerShell to activate the virtual environment:"
-        echo "& \"$venv_path/Scripts/Activate.ps1\""
-    else
-        # cmd
-        echo "Please run the following command in cmd to activate the virtual environment:"
-        echo "\"$venv_path/Scripts/activate.bat\""
-    fi
+    echo "Windows is not supported. Please use WSL, Docker, or another virtualization solution."
+    exit 1
 else
-    # Unix-like systems (like OSX or Linux)
+    # Unix-like systems (like OSX, Linux, Windows with WSL, etc)
     shell_name=$(basename "$SHELL")
 
     echo "To activate the virtual environment, use the following command for your shell ($shell_name):"
@@ -33,17 +25,18 @@ else
 
     case "$shell_name" in
         (bash|zsh)
-            echo "source \".venv/bin/activate\""
+            echo "  ${bold}source \".venv/bin/activate\"${normal}"
             ;;
         (fish)
-            echo "source \".venv/bin/activate.fish\""
+            echo "  ${bold}source \".venv/bin/activate.fish\"${normal}"
             ;;
         (csh|tcsh)
-            echo "source \".venv/bin/activate.csh\""
+            echo "  ${bold}source \".venv/bin/activate.csh\"${normal}"
             ;;
         (*)
             echo "Unsupported shell: $shell_name"
             echo "Please refer to the documentation for your shell on how to activate a virtual environment."
             ;;
     esac
+    echo ""
 fi
