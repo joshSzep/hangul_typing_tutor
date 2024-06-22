@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "hangul_tutor.urls"
+ROOT_URLCONF = "django_base.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "hangul_tutor.wsgi.application"
+WSGI_APPLICATION = "django_base.wsgi.application"
 
 
 # Database
