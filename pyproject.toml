@@ -35,10 +35,9 @@ extend-exclude = "./install_poetry.py"
 python_version = "3.12"
 plugins = ["mypy_django_plugin.main"]
 python_executable = ".venv/bin/python"
-mypy_path = "hangul_tutor/"
 
 [tool.django-stubs]
-django_settings_module = "django_base.settings"
+django_settings_module = "hangul_tutor.django_base.settings"
 
 [tool.isort]
 profile = "black"

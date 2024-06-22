@@ -1,3 +1,5 @@
-from django.shortcuts import render  # noqa: F401
+from django.http import HttpResponse
 
-# Create your views here.
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the hangul_tutor_app index.")
