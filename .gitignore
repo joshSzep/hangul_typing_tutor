@@ -1,0 +1,29 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Django
+*.log
+*.pot
+*.pyc
+local_settings.py
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.idea/
+
+# Virtual Environment
+.venv/
+
+# pytest artifacts
+pytest.ini
+pytest_cache/
+
+# pytest-cov
+.coverage
+htmlcov/
