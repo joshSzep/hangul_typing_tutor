@@ -2,7 +2,6 @@
     "cSpell.words": [
         "asgi",
         "isort",
-        "mypy",
         "pyright",
         "pytest",
         "pythonpath",

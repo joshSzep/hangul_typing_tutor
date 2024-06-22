@@ -8,12 +8,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 Django = "^5.0.6"
 python = "^3.12"
-django-stubs = { extras = ["compatible-mypy"], version = "^5.0.2" }
+django-stubs = "^5.0.2"
 
 [tool.poetry.group.dev.dependencies]
-bandit = { extras = ["toml"], version = "^1.7.9" }
 isort = "^5.13.2"
-mypy = "^1.10.0"
 pre-commit = "^3.7.1"
 pytest = "^8.2.2"
 pytest-django = "^4.8.0"
@@ -29,11 +27,7 @@ line-length = 88
 
 [tool.ruff.format]
 docstring-code-format = true
-
-[tool.mypy]
-python_version = "3.12"
-plugins = ["mypy_django_plugin.main"]
-python_executable = ".venv/bin/python"
+exclude = ["**/migrations/**"]
 
 [tool.django-stubs]
 django_settings_module = "hangul_tutor.django_base.settings"

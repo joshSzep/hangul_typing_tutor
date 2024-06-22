@@ -43,13 +43,6 @@ repos:
         pass_filenames: false
         always_run: true
 
-      - id: mypy
-        name: mypy
-        entry: poetry run mypy -p hangul_tutor
-        language: system
-        pass_filenames: false
-        always_run: true
-
       - id: pyright
         name: pyright
         entry: poetry run pyright hangul_tutor
