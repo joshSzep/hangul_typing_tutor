@@ -12,11 +12,11 @@
     "editor.rulers": [88],
     "editor.detectIndentation": true,
     "files.insertFinalNewline": true,
-    //"isort.check": true,
     "python.poetryPath": "poetry",
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "standard",
     "python.analysis.importFormat": "absolute",
+    "python.terminal.activateEnvironment": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
