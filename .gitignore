@@ -22,8 +22,14 @@ local_settings.py
 
 # pytest artifacts
 pytest.ini
-pytest_cache/
+.pytest_cache/
 
 # pytest-cov
 .coverage
 htmlcov/
+
+# Ruff
+.ruff_cache/
+
+# mypy
+.mypy_cache/

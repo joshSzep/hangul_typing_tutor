@@ -1,0 +1,15 @@
+{
+    "cSpell.words": [
+        "asgi",
+        "isort",
+        "mypy",
+        "pyright",
+        "pytest",
+        "pythonpath",
+        "pythonversion",
+        "venv"
+    ],
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true,
+    "isort.check": true,
+}

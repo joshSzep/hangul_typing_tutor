@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "hangul-tutor"
+version = "0.1.0"
+description = "A Hangul Typing Tutor"
+authors = ["Joshua Szepietowski <joshszep@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+Django = "^5.0.6"
+python = "^3.12"
+django-stubs = {extras = ["compatible-mypy"], version = "^5.0.2"}
+
+[tool.poetry.group.dev.dependencies]
+bandit = {extras = ["toml"], version = "^1.7.9"}
+black = "^24.4.2"
+blacken-docs = "^1.16.0"
+isort = "^5.13.2"
+mypy = "^1.10.0"
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+pytest-django = "^4.8.0"
+pyright = "^1.1.368"
+ruff = "^0.4.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ["py312"]
+verbose = true
+extend-exclude = "./install_poetry.py"
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["mypy_django_plugin.main"]
+python_executable = ".venv/bin/python"
+mypy_path = "hangul_tutor/"
+
+[tool.django-stubs]
+django_settings_module = "hangul_tutor.settings"
+
+[tool.isort]
+profile = "black"
+force_single_line = true
