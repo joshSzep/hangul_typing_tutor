@@ -11,14 +11,15 @@ repos:
   - repo: local
     hooks:
       - id: poetry-check
-        name: poetry check
+        name: poetry check (Python packaging)
         entry: poetry check
         language: system
         pass_filenames: false
         always_run: true
+        fail_fast: true
 
-      - id: ruff
-        name: ruff
+      - id: ruff-check
+        name: ruff check (Python static analysis)
         entry: poetry run ruff check hangul_tutor
         language: system
         pass_filenames: false
@@ -30,21 +31,21 @@ repos:
         ]
 
       - id: isort
-        name: isort
+        name: isort (Python import sorter)
         entry: poetry run isort hangul_tutor
         language: system
         pass_filenames: false
         always_run: true
 
       - id: ruff-format
-        name: ruff-format
+        name: ruff format (Python code formatter)
         entry: poetry run ruff format hangul_tutor
         language: system
         pass_filenames: false
         always_run: true
 
       - id: pyright
-        name: pyright
+        name: pyright (Type checking)
         entry: poetry run pyright hangul_tutor
         language: system
         pass_filenames: false
@@ -55,7 +56,7 @@ repos:
         ]
 
       - id: pytest
-        name: pytest
+        name: pytest (Unit tests)
         entry: poetry run pytest hangul_tutor
         language: system
         pass_filenames: false
