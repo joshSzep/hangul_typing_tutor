@@ -18,7 +18,11 @@
     "python.analysis.importFormat": "absolute",
     "python.terminal.activateEnvironment": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "multiFormatter.formatterList": [
+            "charliermarsh.ruff",
+            "ms-python.isort",
+        ],
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit",

@@ -12,8 +12,6 @@ django-stubs = { extras = ["compatible-mypy"], version = "^5.0.2" }
 
 [tool.poetry.group.dev.dependencies]
 bandit = { extras = ["toml"], version = "^1.7.9" }
-black = "^24.4.2"
-blacken-docs = "^1.16.0"
 isort = "^5.13.2"
 mypy = "^1.10.0"
 pre-commit = "^3.7.1"
@@ -26,8 +24,11 @@ ruff = "^0.4.10"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
-target-version = ["py312"]
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.format]
+docstring-code-format = true
 
 [tool.mypy]
 python_version = "3.12"
@@ -38,12 +39,11 @@ python_executable = ".venv/bin/python"
 django_settings_module = "hangul_tutor.django_base.settings"
 
 [tool.isort]
-force_single_line = true  # Force all imports to be on one line. Black doesn't...
+force_single_line = true  # Force all imports to be on one line.
 use_parentheses = true
 line_length = 88
 multi_line_output = 3
 skip_gitignore = true
-lines_before_imports = 1
 lines_after_imports = 2
 honor_noqa = true
 overwrite_in_place = true
