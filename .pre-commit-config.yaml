@@ -11,8 +11,16 @@ repos:
   - repo: local
     hooks:
       - id: poetry-check
-        name: poetry check (Python packaging)
+        name: poetry check (Python configuration check)
         entry: poetry check
+        language: system
+        pass_filenames: false
+        always_run: true
+        fail_fast: true
+
+      - id: django-check
+        name: django check (Django system check)
+        entry: poetry run python hangul_tutor/manage.py check
         language: system
         pass_filenames: false
         always_run: true
