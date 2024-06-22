@@ -10,26 +10,42 @@ repos:
 
   - repo: local
     hooks:
+      - id: poetry-check
+        name: poetry check
+        entry: poetry check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: ruff
+        name: ruff
+        entry: poetry run ruff check hangul_tutor
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [
+          --fix,
+          --show-fixes,
+          --output-format=full,
+        ]
+
+      - id: isort
+        name: isort
+        entry: poetry run isort hangul_tutor
+        language: system
+        pass_filenames: false
+        always_run: true
+
       - id: black
         name: black
         entry: poetry run black hangul_tutor
         language: system
         pass_filenames: false
         always_run: true
-        args: [
-          '--target-version', 'py312',
-        ]
 
       - id: blacken-docs
         name: blacken-docs
         entry: poetry run blacken-docs
-        language: system
-        pass_filenames: false
-        always_run: true
-
-      - id: isort
-        name: isort
-        entry: poetry run isort hangul_tutor
         language: system
         pass_filenames: false
         always_run: true
@@ -51,13 +67,6 @@ repos:
           --pythonpath, .venv/bin/python,
           --pythonversion, '3.12'
         ]
-
-      - id: ruff
-        name: ruff
-        entry: poetry run ruff check hangul_tutor
-        language: system
-        pass_filenames: false
-        always_run: true
 
       - id: pytest
         name: pytest

@@ -28,7 +28,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 target-version = ["py312"]
-verbose = true
 extend-exclude = "./install_poetry.py"
 
 [tool.mypy]
@@ -40,5 +39,12 @@ python_executable = ".venv/bin/python"
 django_settings_module = "hangul_tutor.django_base.settings"
 
 [tool.isort]
-profile = "black"
-force_single_line = true
+force_single_line = true  # Force all imports to be on one line. Black doesn't...
+use_parentheses = true
+line_length = 88
+multi_line_output = 3
+skip_gitignore = true
+lines_before_imports = 1
+lines_after_imports = 2
+honor_noqa = true
+overwrite_in_place = true
