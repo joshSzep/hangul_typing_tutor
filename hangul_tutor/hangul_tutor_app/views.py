@@ -1,6 +1,6 @@
-from django.http import Http404
 from django.http import HttpRequest
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
 from hangul_tutor.hangul_tutor_app.models import Question
@@ -24,14 +24,13 @@ def detail(
     request: HttpRequest,
     question_id: int,
 ) -> HttpResponse:
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist")
+    question = get_object_or_404(Question, pk=question_id)
     return render(
         request,
         "hangul_tutor_app/detail.html",
-        {"question": question},
+        {
+            "question": question,
+        },
     )
 
 
