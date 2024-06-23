@@ -26,6 +26,6 @@ jobs:
     - name: Install dependencies
       run: |
         ./create_venv.sh
-    - name: Do all pre-commit hooks
+    - name: Run the pre-commit checks
       run: |
-        poetry run pre-commit run --all-files
+        ./pre_commit.sh
