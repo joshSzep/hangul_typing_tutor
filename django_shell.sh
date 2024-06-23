@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python hangul_tutor/manage.py shell
+poetry run python hangul_tutor/manage.py shell
