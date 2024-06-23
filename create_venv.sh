@@ -3,7 +3,7 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-# Step 1: Run install_poetry.py with python3
+# Step 1: Ensure that poetry is installed
 python3 bin/install_poetry.py
 
 # Step 2: Run poetry install to create the virtual environment and install dependencies
