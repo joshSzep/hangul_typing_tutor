@@ -1,3 +1,3 @@
 #!/bin/bash
 
-poetry run python bin/manage.py makemigrations
+poetry run pything manage.py makemigrations
