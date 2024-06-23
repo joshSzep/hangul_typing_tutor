@@ -10,13 +10,12 @@ def index(
     request: HttpRequest,
 ) -> HttpResponse:
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
-    context = {
-        "latest_question_list": latest_question_list,
-    }
     return render(
         request,
         "hangul_tutor_app/index.html",
-        context,
+        {
+            "latest_question_list": latest_question_list,
+        },
     )
 
 
