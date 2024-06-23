@@ -30,7 +30,7 @@ docstring-code-format = true
 exclude = ["**/migrations/**"]
 
 [tool.django-stubs]
-django_settings_module = "hangul_tutor.django_base.settings"
+django_settings_module = "hangul_tutor.settings"
 
 [tool.isort]
 force_single_line = true  # Force all imports to be on one line.

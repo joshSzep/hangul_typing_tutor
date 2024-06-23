@@ -1,4 +1,11 @@
-from django.contrib import admin  # noqa: F401
+from django.contrib import admin
+
+from hangul_tutor.hangul_tutor_app import models
 
 
-# Register your models here.
+admin.site.register(
+    [
+        models.Question,
+        models.Choice,
+    ]
+)

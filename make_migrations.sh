@@ -1,3 +1,3 @@
 #!/bin/bash
 
-poetry run python hangul_tutor/manage.py makemigrations
+poetry run python bin/manage.py makemigrations

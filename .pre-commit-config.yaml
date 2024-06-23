@@ -20,7 +20,7 @@ repos:
 
       - id: django-check
         name: django check (Django system check)
-        entry: poetry run python hangul_tutor/manage.py check
+        entry: poetry run python bin/manage.py check
         language: system
         pass_filenames: false
         always_run: true

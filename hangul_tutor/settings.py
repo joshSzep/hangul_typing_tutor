@@ -32,7 +32,7 @@ ALLOWED_HOSTS: list[str] = []
 # Application definition
 
 INSTALLED_APPS = [
-    "hangul_tutor_app.apps.HangulTutorAppConfig",
+    "hangul_tutor.hangul_tutor_app.apps.HangulTutorAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "django_base.urls"
+ROOT_URLCONF = "hangul_tutor.urls"
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "django_base.wsgi.application"
+WSGI_APPLICATION = "hangul_tutor.wsgi.application"
 
 
 # Database
