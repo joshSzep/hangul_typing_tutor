@@ -41,3 +41,7 @@ skip_gitignore = true
 lines_after_imports = 2
 honor_noqa = true
 overwrite_in_place = true
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "hangul_tutor.settings"
+python_files = "test_*.py *_test.py"
