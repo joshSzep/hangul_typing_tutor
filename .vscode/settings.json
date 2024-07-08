@@ -6,7 +6,8 @@
         "pytest",
         "pythonpath",
         "pythonversion",
-        "venv"
+        "venv",
+        "viewsets"
     ],
     "editor.rulers": [88],
     "editor.detectIndentation": true,
