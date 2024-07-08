@@ -65,7 +65,7 @@ repos:
 
       - id: pytest
         name: pytest (Unit tests)
-        entry: poetry run pytest hangul_tutor
+        entry: poetry run pytest
         language: system
         pass_filenames: false
         always_run: true
