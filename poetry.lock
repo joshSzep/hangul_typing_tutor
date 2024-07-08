@@ -106,6 +106,20 @@ django = "*"
 typing-extensions = "*"
 
 [[package]]
+name = "djangorestframework"
+version = "3.15.2"
+description = "Web APIs for Django, made easy."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "djangorestframework-3.15.2-py3-none-any.whl", hash = "sha256:2b8871b062ba1aefc2de01f773875441a961fefbf79f5eed1e32b2f096944b20"},
+    {file = "djangorestframework-3.15.2.tar.gz", hash = "sha256:36fe88cd2d6c6bec23dca9804bab2ba5517a8bb9d8f47ebc68981b56840107ad"},
+]
+
+[package.dependencies]
+django = ">=4.2"
+
+[[package]]
 name = "filelock"
 version = "3.15.4"
 description = "A platform independent file lock."
@@ -444,4 +458,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "a469ce5dbbf8545459494850bf1ce179bf3d9b25c7fdf1a55535be4db5429a15"
+content-hash = "22924c16cb5990c908805c5fcb89bd5494af598f3f94f68c503afe42772aa181"
