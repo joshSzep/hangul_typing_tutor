@@ -32,7 +32,7 @@ schema_view = get_schema_view(
         description="API for Hangul Typing Tutor",
         terms_of_service="",
         contact=openapi.Contact(email="joshszep@gmail.com"),
-        license=openapi.License(name="BSD License"),
+        license=openapi.License(name="MIT License"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
