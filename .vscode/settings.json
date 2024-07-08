@@ -8,7 +8,8 @@
         "pythonversion",
         "Szepietowski",
         "venv",
-        "viewsets"
+        "viewsets",
+        "yasg"
     ],
     "editor.rulers": [88],
     "editor.detectIndentation": true,
