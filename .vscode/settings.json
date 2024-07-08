@@ -6,6 +6,7 @@
         "pytest",
         "pythonpath",
         "pythonversion",
+        "REDOC",
         "Szepietowski",
         "venv",
         "viewsets",
