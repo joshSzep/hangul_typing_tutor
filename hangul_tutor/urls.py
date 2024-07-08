@@ -23,35 +23,12 @@ from django.urls import path
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularRedocView
 from drf_spectacular.views import SpectacularSwaggerView
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
-from rest_framework import permissions
-
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Hangul Typing Tutor API",
-        default_version="v1",
-        description="API for Hangul Typing Tutor",
-        terms_of_service="",
-        contact=openapi.Contact(email="joshszep@gmail.com"),
-        license=openapi.License(name="MIT License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("challenges.urls")),
     path("", include("marketing.urls")),
-    # drf-yasg views
-    path(
-        "swagger/",
-        schema_view.with_ui("swagger", cache_timeout=0),
-        name="schema-swagger-ui",
-    ),
     # drf-spectacular views
     path(
         "schema/",
