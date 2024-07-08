@@ -8,6 +8,7 @@ __pycache__/
 *.pot
 *.pyc
 local_settings.py
+static/
 
 # macOS
 .DS_Store
