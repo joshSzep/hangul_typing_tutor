@@ -11,7 +11,7 @@ from .views import challenge_view
 router = routers.DefaultRouter()
 router.register(r"sentences", SentenceViewSet)
 router.register(r"challenges", ChallengeViewSet)
-router.register(r"challenge_result", ChallengeResultViewSet)
+router.register(r"challenge_results", ChallengeResultViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),
