@@ -26,7 +26,9 @@ SECRET_KEY = "django-insecure-i1$$gyam45mi4#k+=lkaoxxrml1-&!(lc2-5^e6%n8wknh2l=d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = []
+ALLOWED_HOSTS: list[str] = [
+    "hangul-tutor.onrender.com",
+]
 
 
 # Application definition
