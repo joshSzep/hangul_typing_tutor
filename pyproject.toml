@@ -6,7 +6,7 @@ authors = ["Joshua Szepietowski <joshszep@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 Django = "^5.0.6"
 djangorestframework = "^3.15.2"
 uuid7 = "^0.1.0"
