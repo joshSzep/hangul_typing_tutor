@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 
@@ -26,10 +27,15 @@ SECRET_KEY = "django-insecure-i1$$gyam45mi4#k+=lkaoxxrml1-&!(lc2-5^e6%n8wknh2l=d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = [
-    "hangul-tutor.onrender.com",
-]
+# SECURITY WARNING: update this when you have the production host
+# allowed hosts should be set to the domain name of the production host
+# or a list of domain names that the application will be served from
+# for example: ALLOWED_HOSTS = ['hangul-tutor.com']
+# or: ALLOWED_HOSTS = ['hangul-tutor.com', 'www.hangul-tutor.com']
+# or: ALLOWED_HOSTS = ['*'] to allow all hosts
+ALLOWED_HOSTS: list[str] = ["*"]
 
+PORT = os.getenv("PORT", "1000")
 
 # Application definition
 
