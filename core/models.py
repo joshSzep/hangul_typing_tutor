@@ -6,7 +6,7 @@ from uuid_extensions import uuid7str
 
 class CoreBaseModel(models.Model):
     id = models.CharField(
-        max_length=42,  # 36 characters for UUID + 5 characters for prefix + 1 just cuz
+        max_length=64,  # 36 characters for UUID + 28 reserved for prefix
         primary_key=True,
         editable=False,
         unique=True,
@@ -21,9 +21,9 @@ class CoreBaseModel(models.Model):
     @classmethod
     def get_prefix(cls):
         name = re.sub(r"(?<!^)(?=[A-Z])", "_", cls.__name__).lower()
-        return name[:4]
+        return name[:28]
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.id = f"{self.get_prefix()}_{uuid7str()}"
+            self.id = f"{self.get_prefix()}:{uuid7str()}"
         super().save(*args, **kwargs)

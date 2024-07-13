@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangul Typing Tutor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function decomposeHangul(char) {
+            const syllableStart = 44032;
+            const syllableEnd = 55203;
+            const code = char.charCodeAt(0);
+
+            if (code < syllableStart || code > syllableEnd) {
+                return [char];
+            }
+
+            const chosung = Math.floor((code - syllableStart) / 588);
+            const jungsung = Math.floor((code - syllableStart - chosung * 588) / 28);
+            const jongsung = (code - syllableStart - chosung * 588 - jungsung * 28);
+
+            const chosungList = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+            const jungsungList = 'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
+            const jongsungList = 'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ';
+
+            const result = [chosungList[chosung], jungsungList[jungsung]];
+            if (jongsung > 0) {
+                result.push(jongsungList[jongsung - 1]);
+            }
+
+            return result;
+        }
+
+        function KoreanKeyboard({ pressedKey, isCorrect }) {
+            const getKeyColor = (key) => {
+                if (key === pressedKey) {
+                    return isCorrect ? "#4CAF50" : "#FF5252";
+                }
+                return "#d4d4d4";
+            };
+
+            const renderKey = (x, y, main, sub = null) => (
+                <g transform={`translate(${x}, ${y})`}>
+                    <rect width="70" height="70" fill={getKeyColor(main)} />
+                    <text x="35" y="40" textAnchor="middle" fontSize="20">{main}</text>
+                    {sub && <text x="55" y="25" textAnchor="middle" fontSize="16">{sub}</text>}
+                </g>
+            );
+
+            return (
+                <svg viewBox="0 0 800 380" className="w-full max-w-2xl mx-auto mb-4">
+                    <rect width="800" height="380" fill="#f0f0f0" />
+                    {/* First row */}
+                    {renderKey(10, 10, 'ㅂ', 'ㅃ')}
+                    {renderKey(90, 10, 'ㅈ', 'ㅉ')}
+                    {renderKey(170, 10, 'ㄷ', 'ㄸ')}
+                    {renderKey(250, 10, 'ㄱ', 'ㄲ')}
+                    {renderKey(330, 10, 'ㅅ', 'ㅆ')}
+                    {renderKey(410, 10, 'ㅛ')}
+                    {renderKey(490, 10, 'ㅕ')}
+                    {renderKey(570, 10, 'ㅑ')}
+                    {renderKey(650, 10, 'ㅐ', 'ㅒ')}
+                    {renderKey(730, 10, 'ㅔ', 'ㅖ')}
+                    {/* Second row */}
+                    {renderKey(50, 90, 'ㅁ')}
+                    {renderKey(130, 90, 'ㄴ')}
+                    {renderKey(210, 90, 'ㅇ')}
+                    {renderKey(290, 90, 'ㄹ')}
+                    {renderKey(370, 90, 'ㅎ')}
+                    {renderKey(450, 90, 'ㅗ')}
+                    {renderKey(530, 90, 'ㅓ')}
+                    {renderKey(610, 90, 'ㅏ')}
+                    {renderKey(690, 90, 'ㅣ')}
+                    {/* Third row */}
+                    {renderKey(90, 170, 'ㅋ')}
+                    {renderKey(170, 170, 'ㅌ')}
+                    {renderKey(250, 170, 'ㅊ')}
+                    {renderKey(330, 170, 'ㅍ')}
+                    {renderKey(410, 170, 'ㅠ')}
+                    {renderKey(490, 170, 'ㅜ')}
+                    {renderKey(570, 170, 'ㅡ')}
+                    {/* Spacebar */}
+                    <g transform="translate(170, 250)">
+                        <rect width="460" height="70" fill={getKeyColor(' ')} />
+                        <text x="230" y="40" textAnchor="middle" fontSize="20">Space</text>
+                    </g>
+                </svg>
+            );
+        }
+
+        function App() {
+            const [currentChallenge, setCurrentChallenge] = React.useState(null);
+            const [input, setInput] = React.useState('');
+            const [startTime, setStartTime] = React.useState(null);
+            const [spm, setSpm] = React.useState(0);
+            const [showEnglish, setShowEnglish] = React.useState(false);
+            const [pressedKey, setPressedKey] = React.useState(null);
+            const [isCorrectKey, setIsCorrectKey] = React.useState(false);
+            const [debug, setDebug] = React.useState('');
+            const [lastInputLength, setLastInputLength] = React.useState(0);
+            const [correctKeystrokes, setCorrectKeystrokes] = React.useState(0);
+            const [totalKeystrokes, setTotalKeystrokes] = React.useState(0);
+            const [accuracy, setAccuracy] = React.useState(0);
+            const [showAccuracy, setShowAccuracy] = React.useState(false);
+            const [isChallengeLoaded, setIsChallengeLoaded] = React.useState(false);
+
+            const inputRef = React.useRef(null);
+
+            React.useEffect(() => {
+                fetchChallenge();
+            }, []);
+
+            React.useEffect(() => {
+                if (isChallengeLoaded && inputRef.current) {
+                    inputRef.current.focus();
+                }
+            }, [isChallengeLoaded]);
+
+            const fetchChallenge = async () => {
+                try {
+                    const response = await fetch('../api/v1/challenges/challenge:0669309f-4572-714f-8000-3acabe8e0abf');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch challenge');
+                    }
+                    const data = await response.json();
+                    setCurrentChallenge(data);
+                    setIsChallengeLoaded(true);
+                } catch (error) {
+                    console.error('Error fetching challenge:', error);
+                    setDebug('Error fetching challenge. Please try again.');
+                }
+            };
+
+            const handleInputChange = (e) => {
+                const newInput = e.target.value;
+                if (!startTime) {
+                    setStartTime(Date.now());
+                }
+                setInput(newInput);
+
+                let lastChar;
+                if (newInput.length > lastInputLength) {
+                    lastChar = newInput.slice(-1);
+                } else {
+                    lastChar = newInput.slice(-1);
+                    const decomposed = decomposeHangul(lastChar);
+                    lastChar = decomposed[decomposed.length - 1];
+                }
+                setLastInputLength(newInput.length);
+
+                const expectedChar = currentChallenge.hangul[newInput.length - 1];
+
+                const decomposedExpected = decomposeHangul(expectedChar);
+                const decomposedInput = decomposeHangul(newInput.slice(-1));
+
+                const isCorrect = decomposedExpected.slice(0, decomposedInput.length).every((char, index) => char === decomposedInput[index]);
+
+                setPressedKey(lastChar);
+                setIsCorrectKey(isCorrect);
+
+                setTotalKeystrokes(prev => prev + 1);
+                if (isCorrect) {
+                    setCorrectKeystrokes(prev => prev + 1);
+                }
+
+                setDebug(`Input: ${newInput}, Last input: ${lastChar}, Expected: ${expectedChar}, Correct: ${isCorrect}`);
+
+                if (newInput === currentChallenge.hangul) {
+                    const endTime = Date.now();
+                    const timeInMinutes = (endTime - startTime) / 60000;
+                    const symbolsTyped = currentChallenge.hangul.length;
+                    const calculatedSpm = Math.round(symbolsTyped / timeInMinutes);
+                    const calculatedAccuracy = Math.round((correctKeystrokes / totalKeystrokes) * 100);
+
+                    setSpm(calculatedSpm);
+                    setAccuracy(calculatedAccuracy);
+                    setShowEnglish(true);
+                    setShowAccuracy(true);
+
+                    setTimeout(() => {
+                        fetchChallenge();
+                        setInput('');
+                        setStartTime(null);
+                        setShowEnglish(false);
+                        setLastInputLength(0);
+                        setCorrectKeystrokes(0);
+                        setTotalKeystrokes(0);
+                        setShowAccuracy(false);
+                        setPressedKey(null);
+                        setIsCorrectKey(false);
+                    }, 5000);
+                }
+            };
+
+            const handlePaste = (e) => {
+                e.preventDefault();
+            };
+
+            if (!currentChallenge) {
+                return <div className="text-center mt-10">Loading challenge...</div>;
+            }
+
+            return (
+                <div className="container mx-auto mt-10 p-4">
+                    <h1 className="text-3xl font-bold mb-6 text-center">Hangul Typing Tutor</h1>
+                    <div className="bg-white rounded-lg shadow-md p-6">
+                        <KoreanKeyboard pressedKey={pressedKey} isCorrect={isCorrectKey} />
+                        <p className="text-2xl mb-4 text-center">{currentChallenge.hangul}</p>
+                        {showEnglish && (
+                            <p className="text-xl mb-4 text-center text-green-600">{currentChallenge.english}</p>
+                        )}
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            value={input}
+                            onChange={handleInputChange}
+                            onPaste={handlePaste}
+                            className="w-full p-2 border rounded mb-4"
+                            placeholder="Type the Hangul here"
+                        />
+                        {spm > 0 && (
+                            <div className="text-center">
+                                <p className="text-blue-600">Your typing speed: {spm} Symbols Per Minute</p>
+                                {showAccuracy && <p className="text-green-600">Accuracy: {accuracy}%</p>}
+                            </div>
+                        )}
+                        <p className="text-sm text-gray-500 mt-2">{debug}</p>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
