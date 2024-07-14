@@ -1,4 +1,3 @@
 #!/bin/bash
 
-poetry run python manage.py collectstatic
-poetry run python manage.py migrate
+echo "There are no pre-deployment steps for this project."
