@@ -96,6 +96,10 @@
         }
 
         function App() {
+            const [challengeGroups, setChallengeGroups] = React.useState([]);
+            const [currentGroup, setCurrentGroup] = React.useState(null);
+            const [challengeIds, setChallengeIds] = React.useState([]);
+            const [currentChallengeIndex, setCurrentChallengeIndex] = React.useState(0);
             const [currentChallenge, setCurrentChallenge] = React.useState(null);
             const [input, setInput] = React.useState('');
             const [startTime, setStartTime] = React.useState(null);
@@ -114,8 +118,27 @@
             const inputRef = React.useRef(null);
 
             React.useEffect(() => {
-                fetchChallenge();
+                fetchChallengeGroups();
             }, []);
+
+            React.useEffect(() => {
+                if (currentGroup) {
+                    setChallengeIds(currentGroup.challenges);
+                    setCurrentChallengeIndex(0);
+                }
+            }, [currentGroup]);
+
+            React.useEffect(() => {
+                if (challengeIds.length > 0 && currentChallengeIndex < challengeIds.length) {
+                    fetchChallenge(challengeIds[currentChallengeIndex]);
+                }
+            }, [challengeIds, currentChallengeIndex]);
+
+            React.useEffect(() => {
+                if (challengeIds.length > 0 && currentChallengeIndex < challengeIds.length) {
+                    fetchChallenge(challengeIds[currentChallengeIndex]);
+                }
+            }, [challengeIds, currentChallengeIndex]);
 
             React.useEffect(() => {
                 if (isChallengeLoaded && inputRef.current) {
@@ -123,9 +146,9 @@
                 }
             }, [isChallengeLoaded]);
 
-            const fetchChallenge = async () => {
+            const fetchChallenge = async (challengeId) => {
                 try {
-                    const response = await fetch('../api/v1/challenges/challenge:0669309f-4572-714f-8000-3acabe8e0abf');
+                    const response = await fetch(`../api/v1/challenges/${challengeId}`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch challenge');
                     }
@@ -135,6 +158,23 @@
                 } catch (error) {
                     console.error('Error fetching challenge:', error);
                     setDebug('Error fetching challenge. Please try again.');
+                }
+            };
+
+            const fetchChallengeGroups = async () => {
+                try {
+                    const response = await fetch('../api/v1/challenge_groups/');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch challenge groups');
+                    }
+                    const data = await response.json();
+                    setChallengeGroups(data);
+                    if (data.length > 0) {
+                        setCurrentGroup(data[0]);
+                    }
+                } catch (error) {
+                    console.error('Error fetching challenge groups:', error);
+                    setDebug('Error fetching challenge groups. Please try again.');
                 }
             };
 
@@ -185,7 +225,9 @@
                     setShowAccuracy(true);
 
                     setTimeout(() => {
-                        fetchChallenge();
+                        const nextIndex = (currentChallengeIndex + 1) % challengeIds.length;
+                        setCurrentChallengeIndex(nextIndex);
+                        setIsChallengeLoaded(false);
                         setInput('');
                         setStartTime(null);
                         setShowEnglish(false);

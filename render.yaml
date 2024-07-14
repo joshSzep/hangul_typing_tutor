@@ -3,7 +3,4 @@ services:
     name: hangul_typing_tutor
     env: python
     buildCommand: ./render_build.sh
-    startCommand: gunicorn hangul_tutor.wsgi:application
-    envVars:
-      - key: PORT
-        value: 1000
+    startCommand: ./render_run.sh
