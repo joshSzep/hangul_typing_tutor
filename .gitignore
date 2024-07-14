@@ -8,7 +8,7 @@ __pycache__/
 *.pot
 *.pyc
 local_settings.py
-static/
+# static/  # This must be commented out for the static files to be served in production
 
 # macOS
 .DS_Store
