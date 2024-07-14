@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import os
 from pathlib import Path
 
 
@@ -34,8 +33,6 @@ DEBUG = True
 # or: ALLOWED_HOSTS = ['hangul-tutor.com', 'www.hangul-tutor.com']
 # or: ALLOWED_HOSTS = ['*'] to allow all hosts
 ALLOWED_HOSTS: list[str] = ["*"]
-
-PORT = os.getenv("PORT", "1000")
 
 # Application definition
 
