@@ -1,5 +1,4 @@
 #!/bin/bash
 
-poetry install
-source ./.venv/bin/activate
-./migrate.sh
+poetry install --without=dev
+poetry run python manage.py migrate
