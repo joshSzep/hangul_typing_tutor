@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./create_venv.sh
+poetry install
 source ./.venv/bin/activate
 ./migrate.sh
