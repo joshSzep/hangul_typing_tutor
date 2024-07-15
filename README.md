@@ -3,7 +3,9 @@ A Django based typing tutor web app. Visit https://HangulTypingTutor.com
 
 ## Setup (for developers)
 
-- Navigate to the project's root folder in a terminal.
-- Run `./create_venv.sh` and follow the instructions to activate the virtual environment.
-  - On unix-like systems (such as OSX and Linux) this should be `source .venv/bin/activate` (for `bash` or `zsh`).
-- Run `./migrate.sh` to update your database to the most recent schema.
+- Ensure `redis` is installed. On OSX with brew you can install with `brew install redis`.
+- In a terminal run the redis server with the command `redis-server`
+- In another terminal, navigate to the project's root folder.
+- Build the project (install dependencies, migrate the db) with `./local_build.sh`
+- Run the project's debug/dev server with `./local_run`
+- Enjoy
