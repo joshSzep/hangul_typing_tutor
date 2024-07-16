@@ -40,3 +40,6 @@ htmlcov/
 
 # celery
 celerybeat-schedule.db
+
+# Redis
+dump.rdb
