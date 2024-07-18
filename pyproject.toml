@@ -14,6 +14,7 @@ drf-spectacular = { extras = ["sidecar"], version = "^0.27.2" }
 gunicorn = "^22.0.0"
 celery = "^5.4.0"
 redis = "^5.0.7"
+django-allauth = { extras = ["socialaccount", "mfa"], version = "^0.63.6" }
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"

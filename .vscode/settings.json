@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "allauth",
         "asgi",
         "gunicorn",
         "isort",
@@ -8,6 +9,7 @@
         "pythonpath",
         "pythonversion",
         "REDOC",
+        "socialaccount",
         "Szepietowski",
         "venv",
         "viewsets",
