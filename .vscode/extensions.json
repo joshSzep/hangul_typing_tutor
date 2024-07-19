@@ -16,7 +16,6 @@
         "ms-python.debugpy",
         "mechatroner.rainbow-csv",
         "charliermarsh.ruff",
-        "rangav.vscode-thunder-client",
         "davidanson.vscode-markdownlint",
     ]
 }
