@@ -1,5 +1,6 @@
 # Hangul Typing Tutor
-A Django based typing tutor web app. Visit https://HangulTypingTutor.com
+
+A Django based typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)
 
 ## Setup (for developers)
 
