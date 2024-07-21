@@ -15,5 +15,6 @@
         "mechatroner.rainbow-csv",
         "charliermarsh.ruff",
         "davidanson.vscode-markdownlint",
+        "bruno-api-client.bruno",
     ]
 }
