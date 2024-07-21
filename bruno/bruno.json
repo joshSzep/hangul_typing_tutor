@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "hangul_typing_tutor_bruno",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
