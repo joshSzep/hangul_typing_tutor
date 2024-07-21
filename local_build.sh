@@ -43,3 +43,6 @@ fi
 
 # Step 5: Run the Django migrations
 DJANGO_DEBUG="true" poetry run python manage.py migrate
+
+# Step 6: Ensure bruno's cli is installed (npm required)
+npm install -g @usebruno/cli
