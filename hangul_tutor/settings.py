@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 
@@ -21,10 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-i1$$gyam45mi4#k+=lkaoxxrml1-&!(lc2-5^e6%n8wknh2l=d"
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "local_development_secret_key_which_is_51_characters",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "false").lower() == "true"
+IS_NOT_DEBUG = not DEBUG
+
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000 if IS_NOT_DEBUG else 0  # 1 year or 0 if DEBUG
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True if IS_NOT_DEBUG else False
 
 # SECURITY WARNING: update this when you have the production host
 # allowed hosts should be set to the domain name of the production host
@@ -32,10 +42,19 @@ DEBUG = True
 # for example: ALLOWED_HOSTS = ['hangul-tutor.com']
 # or: ALLOWED_HOSTS = ['hangul-tutor.com', 'www.hangul-tutor.com']
 # or: ALLOWED_HOSTS = ['*'] to allow all hosts
-ALLOWED_HOSTS: list[str] = ["*"]
+ALLOWED_HOSTS: list[str] = [
+    "hangultypingtutor.com",
+]
+
+if DEBUG:
+    ALLOWED_HOSTS.extend(
+        [
+            "localhost",
+            "127.0.0.1",
+        ]
+    )
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -75,6 +94,16 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
+SESSION_COOKIE_SECURE = IS_NOT_DEBUG
+SESSION_COOKIE_HTTP_ONLY = IS_NOT_DEBUG
+SESSION_COOKIE_SAMESITE = "Strict" if IS_NOT_DEBUG else "Lax"
+
+CSRF_COOKIE_SECURE = IS_NOT_DEBUG
+CSRF_COOKIE_HTTP_ONLY = IS_NOT_DEBUG
+CSRF_COOKIE_SAMESITE = "Strict" if IS_NOT_DEBUG else "Lax"
+
+SECURE_SSL_REDIRECT = IS_NOT_DEBUG
+
 ROOT_URLCONF = "hangul_tutor.urls"
 
 TEMPLATES = [
@@ -103,6 +132,15 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+    }
+    if DEBUG
+    else {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.environ.get("DATABASE_NAME"),
+        "USER": os.environ.get("DATABASE_USER"),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "HOST": os.environ.get("DATABASE_HOST"),
+        "PORT": os.environ.get("DATABASE_PORT"),
     }
 }
 

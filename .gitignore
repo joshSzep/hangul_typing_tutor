@@ -36,7 +36,7 @@ htmlcov/
 .mypy_cache/
 
 # sqlite3
-# *.sqlite3  # Temporarily allow sqlite3 files to be committed for testing purposes
+*.sqlite3
 
 # celery
 celerybeat-schedule.db

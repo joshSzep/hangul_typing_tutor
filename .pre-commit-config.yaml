@@ -25,6 +25,14 @@ repos:
         always_run: true
         fail_fast: true
 
+      - id: django-check-deploy
+        name: django check deploy (Django system check for deployment)
+        entry: poetry run python manage.py check --deploy
+        language: system
+        pass_filenames: false
+        always_run: true
+        fail_fast: true
+
       - id: ruff-check
         name: ruff check (Python static analysis)
         entry: poetry run ruff check hangul_tutor
