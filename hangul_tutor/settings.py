@@ -236,13 +236,14 @@ LOGGING = {
         "django": {
             "handlers": ["console"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "WARN"),
+            "propagate": True,
         },
         "hangul_tutor": {
             "handlers": ["console"],
             "level": "INFO",
             "propagate": True,
         },
-        "celery": {
+        "hangul_tutor.celery": {
             "handlers": ["console"],
             "level": "INFO",
             "propagate": True,
