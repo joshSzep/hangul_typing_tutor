@@ -42,4 +42,4 @@ else
 fi
 
 # Step 5: Run the Django migrations
-poetry run python manage.py migrate
+DJANGO_DEBUG="true" poetry run python manage.py migrate
