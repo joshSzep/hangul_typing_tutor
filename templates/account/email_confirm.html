@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Email{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h2 class="text-2xl font-bold mb-6">Confirm Email</h2>
+    {% if confirmation %}
+        <p class="mb-4">Please confirm that <a href="mailto:{{ confirmation.email_address.email }}" class="text-blue-500 hover:underline">{{ confirmation.email_address.email }}</a> is your email address.</p>
+        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+            {% csrf_token %}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Confirm
+            </button>
+        </form>
+    {% else %}
+        <p class="text-red-500">This email confirmation link has expired or is invalid. Please request a new confirmation email.</p>
+    {% endif %}
+</div>
+{% endblock %}

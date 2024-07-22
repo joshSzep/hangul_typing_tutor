@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Verification Email Sent{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h2 class="text-2xl font-bold mb-6">Verify Your Email</h2>
+    <div class="mb-4">
+        <p class="text-gray-700">We've sent an email to verify your address. Please check your inbox and click on the verification link to complete the signup process.</p>
+    </div>
+    <div class="mb-6">
+        <p class="text-gray-600 text-sm">If you don't see the email, please check your spam folder.</p>
+    </div>
+    <div>
+        <a href="{% url 'account_email' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Manage Email Addresses
+        </a>
+    </div>
+</div>
+{% endblock %}

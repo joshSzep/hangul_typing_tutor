@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hangul Typing Tutor{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-gray-800">Hangul Typing Tutor</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+        &copy; 2024 <a href="https://www.linkedin.com/in/joshszep">Josh Szepietowski</a>. All rights reserved.
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
