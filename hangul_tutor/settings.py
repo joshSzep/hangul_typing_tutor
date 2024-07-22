@@ -44,6 +44,7 @@ SECURE_HSTS_PRELOAD = True if IS_NOT_DEBUG else False
 # or: ALLOWED_HOSTS = ['*'] to allow all hosts
 ALLOWED_HOSTS: list[str] = [
     "hangultypingtutor.com",
+    "hangul-typing-tutor.onrender.com",
 ]
 
 if DEBUG:
