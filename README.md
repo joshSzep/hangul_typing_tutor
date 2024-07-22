@@ -1,6 +1,6 @@
 # Hangul Typing Tutor
 
-A Django based typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)
+A Django based korean typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)
 
 ## Why are you making this?
 
