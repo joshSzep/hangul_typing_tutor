@@ -203,18 +203,21 @@ SPECTACULAR_SETTINGS = {
 }
 
 # CELERY STUFF
-BROKER_URL = os.environ.get(
+CELERY_BROKER_URL = os.environ.get(
     "CELERY_BROKER_URL",
     "redis://localhost:6379",
 )
 CELERY_RESULT_BACKEND = os.environ.get(
     "CELERY_RESULT_BACKEND",
-    BROKER_URL,
+    CELERY_BROKER_URL,
 )
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "UTC"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_TASK_SOFT_TIME_LIMIT = 20 * 60
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
