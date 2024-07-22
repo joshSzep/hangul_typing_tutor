@@ -16,6 +16,7 @@ celery = "^5.4.0"
 redis = "^5.0.7"
 django-allauth = { extras = ["socialaccount", "mfa"], version = "^0.63.6" }
 psycopg2 = "^2.9.9"
+whitenoise = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"

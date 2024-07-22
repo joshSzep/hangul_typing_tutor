@@ -13,6 +13,7 @@
         "Szepietowski",
         "venv",
         "viewsets",
+        "whitenoise",
         "wsgi",
         "yasg"
     ],
