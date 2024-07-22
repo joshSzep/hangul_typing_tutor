@@ -8,7 +8,7 @@ To sharpen my rusty Django skills and to scratch a personal itch: I am currently
 
 ## Why did you do X on the frontend?
 
-My frontend engineers are [Claud](https://claud.ai) and [ChatGPT](https://chatgpt.com). 😉 Ask them! 😆
+My frontend engineers are [Claud](https://claud.ai/) and [ChatGPT](https://chatgpt.com). 😉 Ask them! 😆
 
 ## Roadmap
 
