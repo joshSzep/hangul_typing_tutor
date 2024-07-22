@@ -3,10 +3,11 @@
 A Django based typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)
 
 ## Setup (for developers)
-
-- Ensure `redis` is installed. On OSX with brew you can install with `brew install redis`.
-- In a terminal run the redis server with the command `redis-server`
-- In another terminal, navigate to the project's root folder.
+- Requires Python 3.11 or higher. Recommended to use `pyenv` for this.
+- Ensure `poetry` is installed. On OSX with brew you can install with `brew install poetry`
+- Ensure `redis` is installed. On OSX with brew you can install with `brew install redis`
 - Build the project (install dependencies, migrate the db) with `./local_build.sh`
-- Run the project's debug/dev server with `./local_run`
-- Enjoy
+- In a seperate terminal, run the redis server with the command `redis-server`
+- In a seperate terminal, run a celery worker: `poetry run celery -A hangul_tutor worker`
+- Run the project's debug/dev server with `./local_run.sh`
+- Enjoy!
