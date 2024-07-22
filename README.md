@@ -1,15 +1,17 @@
 # Hangul Typing Tutor
 
-A Django based korean typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)!
+A Django/React based korean typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)!
 
 ## Why are you making this?
 
 To sharpen my rusty Django skills and to scratch a personal itch: I am currently learning Korean! 🤓
 
 ## Why did you do X on the frontend?
+
 My frontend engineers are [Claud](https://claud.ai) and [ChatGPT](https://chatgpt.com). 😉 Ask them! 😆
 
 ## Roadmap
+
 - Support basic email/password user accounts 📧
 - Support social logins (Google, Facebook, etc) 🔐
 - Allow users to track their progress over time 📉
@@ -20,6 +22,7 @@ My frontend engineers are [Claud](https://claud.ai) and [ChatGPT](https://chatgp
 - SEO optimizations? 🙈
 
 ## Setup for development
+
 - Requires Python 3.11 or higher. Recommended to use `pyenv` for this.
 - Ensure `poetry` is installed. On OSX with brew you can install with `brew install poetry`
 - Ensure `redis` is installed. On OSX with brew you can install with `brew install redis`
