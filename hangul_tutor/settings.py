@@ -112,6 +112,14 @@ SECURE_SSL_REDIRECT = IS_NOT_DEBUG
 
 ROOT_URLCONF = "hangul_tutor.urls"
 
+CONTEXT_PROCESSORS = [
+    "django.template.context_processors.request",
+    "django.contrib.auth.context_processors.auth",
+    "django.contrib.messages.context_processors.messages",
+]
+if DEBUG:
+    CONTEXT_PROCESSORS.insert(0, "django.template.context_processors.debug")
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -120,12 +128,7 @@ TEMPLATES = [
         ],
         "APP_DIRS": True,
         "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
+            "context_processors": CONTEXT_PROCESSORS,
         },
     },
 ]
