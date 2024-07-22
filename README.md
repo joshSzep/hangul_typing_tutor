@@ -14,6 +14,7 @@ Sharpen my rusty Django skills and scratching a personal itch (I am currently le
 - Integrate with the OpenAI API to generate new typing challenges dynamically
 - Add static pages explaining how to setup 2-set Korean keyboard on various devices
 - Monetize [HangulTypingTutor.com](https://HangulTypingTutor.com) (ads? referral links? TBD)
+- SEO optimizations?
 
 ## Setup for development
 - Requires Python 3.11 or higher. Recommended to use `pyenv` for this.
