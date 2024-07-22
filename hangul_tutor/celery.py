@@ -3,6 +3,7 @@ import os
 import time
 
 import celery
+from django.core.mail import send_mail
 
 
 # Set the default Django settings module for the 'celery' program.
@@ -26,7 +27,22 @@ logger = logging.getLogger(__name__)
 
 @app.task(bind=True, ignore_result=True)
 def debug_task(self):
-    logger.info("Starting debug task")
-    time.sleep(5)
-    logger.info("Debug task finished")
-    logger.debug(f"Request: {self.request!r}")
+    # Send email
+    send_mail(
+        subject="Debug Task Started",
+        message="The debug task has started.",
+        from_email=None,  # Use default from email
+        recipient_list=["joshszep@gmail.com"],
+        fail_silently=False,
+    )
+
+    time.sleep(30)
+
+    # Send email
+    send_mail(
+        subject="Debug Task Finished",
+        message="The debug task has finished.",
+        from_email=None,  # Use default from email
+        recipient_list=["joshszep@gmail.com"],
+        fail_silently=False,
+    )
