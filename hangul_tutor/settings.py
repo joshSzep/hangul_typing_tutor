@@ -36,24 +36,12 @@ SECURE_HSTS_SECONDS = 31536000 if IS_NOT_DEBUG else 0  # 1 year or 0 if DEBUG
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True if IS_NOT_DEBUG else False
 
-# SECURITY WARNING: update this when you have the production host
-# allowed hosts should be set to the domain name of the production host
-# or a list of domain names that the application will be served from
-# for example: ALLOWED_HOSTS = ['hangul-tutor.com']
-# or: ALLOWED_HOSTS = ['hangul-tutor.com', 'www.hangul-tutor.com']
-# or: ALLOWED_HOSTS = ['*'] to allow all hosts
 ALLOWED_HOSTS: list[str] = [
     "hangultypingtutor.com",
     "hangul-typing-tutor.onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
-
-if DEBUG:
-    ALLOWED_HOSTS.extend(
-        [
-            "localhost",
-            "127.0.0.1",
-        ]
-    )
 
 # Application definition
 INSTALLED_APPS = [
