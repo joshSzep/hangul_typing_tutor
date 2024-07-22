@@ -1,20 +1,23 @@
 # Hangul Typing Tutor
 
-A Django based korean typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)
+A Django based korean typing tutor web app. Visit [HangulTypingTutor.com](https://HangulTypingTutor.com)!
 
 ## Why are you making this?
 
-Sharpen my rusty Django skills and scratching a personal itch (I am currently learning Korean)
+To sharpen my rusty Django skills and to scratch a personal itch: I am currently learning Korean! 🤓
+
+## Why did you do X on the frontend?
+My frontend engineers are [Claud](https://claud.ai) and [ChatGPT](https://chatgpt.com). 😉 Ask them! 😆
 
 ## Roadmap 
-- Support basic email/password user accounts
-- Support social logins (Google, Facebook, etc)
-- Allow users to track their progress over time
-- i18n (internationalization: support more languages than English)
-- Integrate with the OpenAI API to generate new typing challenges dynamically
-- Add static pages explaining how to setup 2-set Korean keyboard on various devices
-- Monetize [HangulTypingTutor.com](https://HangulTypingTutor.com) (ads? referral links? TBD)
-- SEO optimizations?
+- Support basic email/password user accounts 📧
+- Support social logins (Google, Facebook, etc) 🔐
+- Allow users to track their progress over time 📉
+- i18n (internationalization: support more languages than English) 🌐
+- Integrate with the OpenAI API to generate new typing challenges dynamically 🤖
+- Add static pages explaining how to setup 2-set Korean keyboard on various devices 📖
+- Monetize [HangulTypingTutor.com](https://HangulTypingTutor.com) (ads? referral links? TBD) 🤑
+- SEO optimizations? 🙈
 
 ## Setup for development
 - Requires Python 3.11 or higher. Recommended to use `pyenv` for this.
