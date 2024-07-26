@@ -8,6 +8,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r"challenges", views.ChallengeViewSet)
 router.register(r"challenge_groups", views.ChallengeGroupViewSet)
+router.register(r"typing-speeds", views.TypingSpeedViewSet)
 
 urlpatterns = [
     path("v1/", include(router.urls)),
