@@ -11,9 +11,9 @@ class CoreBaseModel(models.Model):
         editable=False,
         unique=True,
     )
-    active = models.BooleanField(default=True)  # Soft delete field
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    deleted_at = models.DateTimeField(null=True, blank=True, default=None)
 
     class Meta:
         abstract = True
